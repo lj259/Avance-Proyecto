@@ -11,6 +11,7 @@ Route::get('/recupereacion',[ControladorVistas::class,'recuperacion'])->name('ru
 
 Route::post('/forminicio',[ControladorVistas::class,'forminicio'])->name('forminicio');
 
-Route::post('/formregistro',[ControladorVistas::class,'forminicio'])->name('formregis');
+Route::post('/formregistro', [ControladorVistas::class, 'formregistro'])->name('formregis');
+
 
 Route::post('/formrecuperacion',[ControladorVistas::class,'formrecuperacion'])->name('formrecuperecion');
