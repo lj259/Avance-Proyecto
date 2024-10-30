@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 
-Route::get('inicio',[Controller::class,'home'])->name('rutainicio');
+Route::get('/',[Controller::class,'home'])->name('rutainicio');
 
 Route::get('/registro',[Controller::class,'registro'])->name('rutaregis');
 
