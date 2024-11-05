@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ControladorVistas;
 
-Route::get('/',[Controller::class,'home'])->name('rutainicio');
+Route::get('inicio',[Controlador::class,'home'])->name('rutainicio');
 
-Route::get('/registro',[Controller::class,'registro'])->name('rutaregis');
+Route::get('/registro',[ControladorVistas::class,'registro'])->name('rutaregis');
 
 Route::get('/recuperacion',[ControladorVistas::class,'recuperacion'])->name('rutarecuperacion');
 
