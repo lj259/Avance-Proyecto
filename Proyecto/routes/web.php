@@ -7,10 +7,33 @@ Route::get('/',[Controller::class,'home'])->name('rutainicio');
 
 Route::get('/registro',[Controller::class,'registro'])->name('rutaregis');
 
-Route::get('/recupereacion',[Controller::class,'recuperacion'])->name('rutarecuperacion');
+Route::get('/recuperacion',[ControladorVistas::class,'recuperacion'])->name('rutarecuperacion');
 
-Route::post('/forminicio',[Controller::class,'forminicio'])->name('forminicio');
 
-Route::post('/formregistro', [Controller::class, 'formregistro'])->name('formregis');
+Route::post('/registro/cliente ', [ControladorVistas::class, 'registrocliente'])->name('registro/cliente');
 
-Route::post('/formrecuperacion',[Controller::class,'formrecuperacion'])->name('formrecuperecion');
+Route::get('/busqueda/hoteles',[ControladorVistas::class,'busquedahoteles'])->name('rutabuscahoteles');
+
+
+
+Route::get('/busqueda/vuelos',[ControladorVistas::class,'busquedavuelos,'])->name('rutabuscavuelos');
+
+Route::get('/carrito/reservacion',[ControladorVistas::class,'carritoreservacion'])->name('rutareservacion');
+
+Route::get('/Detalle/hotel',[ControladorVistas::class,'Detallehotel'])->name('rutahotel');
+
+Route::get('/login',[ControladorVistas::class,'login'])->name('login');
+
+Route::get('/metodopago',[ControladorVistas::class,'metodopago'])->name('metodopago');
+
+
+
+
+Route::get('/resultado/hotel',[ControladorVistas::class,'resultadohotel'])->name('resultadohotel');
+
+Route::get('/resultado/vuelo',[ControladorVistas::class,'resultadovuelo'])->name('resultadovuelo');
+
+
+
+
+
