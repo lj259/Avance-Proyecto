@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidadorInicio extends FormRequest
+class Validadorlogin extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class ValidadorInicio extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'txtnombre' => 'required|string|min:8|max:20',
+            'txtapellido' => 'required|min:8|max:20',
+            'txtcorreo' => 'email:rfc:dns',
+            'txtcontraseña' => 'required|min:8'
         ];
     }
 }

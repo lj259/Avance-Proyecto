@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidadorRecuperacion extends FormRequest
+class validadorBusquedaHoteles extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,7 +22,12 @@ class ValidadorRecuperacion extends FormRequest
     public function rules(): array
     {
         return [
-            'txtcorreo' => 'email:dns:rfc'
+            'txtdestinacion' => 'required|string|max:255',
+            'txtcheckin' => 'required|date|after_or_equal:today',
+            'txtcheckout' => 'required|date|after:checkIn',
+            'txthabitacion' => 'required|integer|min:1',
+            'txtadultos' => 'required|integer|min:1',
+            'txtniños' => 'required|integer|min:0'
         ];
     }
 }

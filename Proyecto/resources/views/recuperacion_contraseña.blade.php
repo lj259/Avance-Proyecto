@@ -12,7 +12,7 @@
         <form id="resetPasswordForm">
             <div class="form-group">
                 <label for="email">Correo Electrónico:</label>
-                <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" required>
+                <input type="text" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" name="txtcorreo">
                 <div class="invalid-feedback">Por favor, ingresa un correo electrónico válido.</div>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Enviar Enlace de Recuperación</button>

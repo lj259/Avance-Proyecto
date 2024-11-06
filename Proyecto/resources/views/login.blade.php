@@ -15,19 +15,19 @@
         <form action="/iniciar-sesion" method="POST">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Ingresa tu nombre">
+                <input type="text" class="form-control" id="nombre" name="txtnombre" required placeholder="Ingresa tu nombre">
             </div>
             <div class="mb-3">
                 <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" required placeholder="Ingresa tu apellido">
+                <input type="text" class="form-control" id="apellido" name="txtapellido" required placeholder="Ingresa tu apellido">
             </div>
             <div class="mb-3">
                 <label for="correo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" name="correo" required placeholder="nombre@dominio.com">
+                <input type="text" class="form-control" id="correo" name="txtcorreo" required placeholder="nombre@dominio.com">
             </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña" name="contraseña" required placeholder="Ingresa tu contraseña">
+                <input type="text" class="form-control" id="contraseña" name="txtcontraseña" required placeholder="Ingresa tu contraseña">
             </div>
            
             <div class="text-center mb-3">

@@ -12,34 +12,34 @@
         <form id="hotelSearchForm" class="bg-light p-4 rounded shadow">
             <div class="form-group">
                 <label for="destination">Destino</label>
-                <input type="text" class="form-control" id="destination" placeholder="Ingresa tu destino" >
+                <input type="text" class="form-control" id="destination" placeholder="Ingresa tu destino" name="txtdestinacion">
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="checkIn">Fecha Check In</label>
-                    <input type="date" class="form-control" id="checkIn" >
+                    <label for="checkin">Fecha Check In</label>
+                    <input type="date" class="form-control" id="checkIn" name="txtcheckin">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="checkOut">Fecha Check Out</label>
-                    <input type="date" class="form-control" id="checkOut" >
+                    <label for="checkout">Fecha Check Out</label>
+                    <input type="date" class="form-control" id="checkOut" name="txtcheckout">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="rooms">Numero de Habitaciones</label>
-                    <input type="number" class="form-control" id="rooms" min="1" >
+                    <input type="number" class="form-control" id="rooms" min="1" name="txthabitacion" >
                 </div>
                 <div class="form-group col-md-6">
                     <label for="adults">Huespedes Adultos</label>
-                    <input type="number" class="form-control" id="adults" min="1" >
+                    <input type="number" class="form-control" id="adults" min="1" name="txtadultos">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="children">Huespedes Niños</label>
-                <input type="number" class="form-control" id="children" min="0">
+                <input type="number" class="form-control" id="children" min="0" name="txtniños">
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">

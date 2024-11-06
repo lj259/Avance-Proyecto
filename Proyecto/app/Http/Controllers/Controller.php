@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\validadorRegistro;
+use App\Http\Requests\Validadorlogin; 
+use App\Http\Requests\validadorRegistroCliente;
+use App\Http\Requests\ValidadorRecuperacion;
 
 class Controller
 {
