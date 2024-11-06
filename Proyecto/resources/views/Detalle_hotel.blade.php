@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Hotel</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+@extends('layouts.Plantilla')
+@section('Titulo','Detalles Hotel')
+@section('Contenido')
+
 
 <div class="container my-5">
     <h1 class="text-center mb-5">Detalles del Hotel</h1>
@@ -44,8 +39,8 @@
 
     
     <div class="mb-5">
-        <h4>Descripcion</h4>
-        <p>Hotel para pasar las vacacioenes</p>
+        <h4>Descripción</h4>
+        <p>Hotel para pasar las vacaciones</p>
     </div>
 
    
@@ -78,7 +73,7 @@
     
     <div class="mb-5">
         <h4>Politicas de Cancelacion</h4>
-        <p>No reembolsable por habitaciO    n.</p>
+        <p>No reembolsable por habitación.</p>
     </div>
 
     
@@ -100,22 +95,18 @@
                     <td>Vista al mar, 2 camas, WiFi, Aire Acondicionado, TV</td>
                     <td>$1000</td>
                     <td>Disponible</td>
-                    <td><button class="btn btn-primary btn-sm">Añadir al Carrito</button></td>
+                    <td><a href="/carrito/reservacion" class="btn btn-primary btn-sm">Añadir al Carrito</a></td>
                 </tr>
                 <tr>
                     <td>Habitación Deluxe</td>
                     <td>Vista a la montaña, 1 cama King, WiFi, Aire Acondicionado, Jacuzzi</td>
                     <td>$20000</td>
                     <td>No Disponible</td>
-                    <td><button class="btn btn-primary btn-sm" disabled>Añadir al Carrito</button></td>
+                    <td><a href="/carrito/reservacion" class="btn btn-primary btn-sm" disabled>Añadir al Carrito</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection

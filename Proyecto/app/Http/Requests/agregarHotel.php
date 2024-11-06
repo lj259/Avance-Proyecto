@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class validadorBusquedaVuelos extends FormRequest
+class agregarHotel extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,7 @@ class validadorBusquedaVuelos extends FormRequest
     public function rules(): array
     {
         return [
-            'origin' => 'required|in:CDMX,GDL,MTY,CUN,PVR,BJX,SJD',
-            'destination' => 'required|in:CDMX,GDL,MTY,CUN,PVR,BJX,SJD|different:origin',
-            'departureDate' => 'required|date|after_or_equal:today',
-            'returnDate' => 'nullable|date|after:departureDate',
-            'passengers' => 'required|integer|min:1|max:6',
-            'class' => 'required|in:economy,business,first',
+            'nombre_hotel' => 'required|string|max:255'
         ];
     }
 }

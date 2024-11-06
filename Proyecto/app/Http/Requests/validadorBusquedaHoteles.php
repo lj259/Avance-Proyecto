@@ -11,7 +11,7 @@ class validadorBusquedaHoteles extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class validadorBusquedaHoteles extends FormRequest
         return [
             'txtdestinacion' => 'required|string|max:255',
             'txtcheckin' => 'required|date|after_or_equal:today',
-            'txtcheckout' => 'required|date|after:checkIn',
+            'txtcheckout' => 'required|date|after:txtcheckin',
             'txthabitacion' => 'required|integer|min:1',
             'txtadultos' => 'required|integer|min:1',
             'txtniños' => 'required|integer|min:0'

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Reservaciones</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+@extends('layouts.Plantilla')
+@section('Titulo','Carrito')
+@section('Contenido')
 
 <div class="container my-5">
     <h1 class="text-center mb-5">Carrito de Reservaciones</h1>
@@ -42,7 +36,9 @@
     </div>
 
     <!-- Calculo de Precio -->
-    <div class="card mb-4">
+     <form action="/metodopago" method="post">
+        @csrf
+     <div class="card mb-4">
         <div class="card-header bg-info text-white">
             <h4>Cálculo de Precios</h4>
         </div>
@@ -51,7 +47,9 @@
             <h5>Precio del Vuelo</h5>
             <div class="form-group">
                 <label for="numPasajeros">Número de Pasajeros:</label>
-                <input type="number" class="form-control" id="numPasajeros" placeholder="Ingresa número de pasajeros" min="1">
+                <input type="number" class="form-control" id="numPasajeros" name="numPasajeros" placeholder="Ingresa número de pasajeros" min="1">
+                <small class="form-text text-danger"><strong>{{$errors->first('numPasajeros')}}</strong></small>
+
             </div>
             <p>Precio por pasajero: $100 USD</p>
             <p><strong>Total Vuelo:</strong> $<span id="totalVuelo">0</span> USD</p>
@@ -60,7 +58,9 @@
             <h5 class="mt-4">Precio del Hotel</h5>
             <div class="form-group">
                 <label for="numNoches">Número de Noches:</label>
-                <input type="number" class="form-control" id="numNoches" placeholder="Ingresa el número de noches" min="1">
+                <input type="number" class="form-control" id="numNoches" name="numNoches" placeholder="Ingresa el número de noches" min="1">
+                <small class="form-text text-danger"><strong>{{$errors->first('numNoches')}}</strong></small>
+
             </div>
             <p>Precio por noche: $80 USD</p>
             <p><strong>Total Hotel:</strong> $<span id="totalHotel">0</span> USD</p>
@@ -69,8 +69,13 @@
 
    
     <div class="text-center mt-5">
-        <button class="btn btn-success btn-lg" onclick="confirmarReservacion()">Confirmar Reservacion</button>
+
+        <button class="btn btn-success btn-lg">Confirmar Reservacion</button>
+
+        <!-- <button class="btn btn-success btn-lg" onclick="confirmarReservacion()">Confirmar Reservacion</button> -->
     </div>
+     </form>
+    
 </div>
 
 <!-- <script>
@@ -112,9 +117,4 @@
    
     window.onload = cargarDatosDeSeleccion;
 </script> -->
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection

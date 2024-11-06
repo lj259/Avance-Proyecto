@@ -11,7 +11,7 @@ class validadorRegistroCliente extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class validadorRegistroCliente extends FormRequest
         return [
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
-            'correo' => 'required|email|unique:clientes,correo',
+            'correo' => 'required|email',//pendiente de poner |unique:clientes,correo
             'telefono' => 'required|regex:/^[0-9]{10}$/',
             'contraseña' => 'required|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
         ];
