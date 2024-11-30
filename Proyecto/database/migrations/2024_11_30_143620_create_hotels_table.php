@@ -11,8 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hotels', function (Blueprint $table) {
+        Schema::create('hoteles', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre',150);
+            $table->integer('habitaciones');
+            $table->integer('adultos');
+            $table->integer('niños');
+            $table->integer('precio');
+            $table->integer('calificacion');//1 al 5 en estrellas
+            $table->string('ubicacion',150);
+            $table->string('distancia_centro',150);
+            $table->string('puntos_turisticos',150);
+            $table->string('servicios',150);
             $table->timestamps();
         });
     }
