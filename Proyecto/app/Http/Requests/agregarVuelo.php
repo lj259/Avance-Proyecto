@@ -22,7 +22,11 @@ class agregarVuelo extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'numero_vuelo' => 'required|numeric',
+            'origen' => 'required|in:CDMX,GDL,MTY,CUN,PVR,BJX,SJD',
+            'destino' => 'required|in:CDMX,GDL,MTY,CUN,PVR,BJX,SJD|different:origen',
+            'fecha_salida' => 'required|date|after_or_equal:today',
+            'tarifa' => 'required|numeric|min:1'
         ];
     }
 }

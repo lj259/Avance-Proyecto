@@ -21,24 +21,24 @@
         <h4 class="my-3">Pago con Tarjeta de Crédito</h4>
         <div class="form-group">
             <label for="cardNumber">Número de Tarjeta:</label>
-            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Número de tarjeta" maxlength="16" required>
+            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Número de tarjeta" maxlength="16" >
             <small class="form-text text-danger"><strong>{{$errors->first('cardNumber')}}</strong></small>
 
         </div>
         <div class="form-group">
             <label for="expiryDate">Fecha de Expiración:</label>
-            <input type="text" class="form-control" id="expiryDate" name="expiryDate" placeholder="MM/AA" required>
+            <input type="text" class="form-control" id="expiryDate" name="expiryDate" placeholder="MM/AA" >
             <small class="form-text text-danger"><strong>{{$errors->first('expiryDate')}}</strong></small>
 
         </div>
         <div class="form-group">
             <label for="cvv">CVV:</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV" maxlength="3" required>
+            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVV" maxlength="3" >
             <small class="form-text text-danger"><strong>{{$errors->first('cvv')}}</strong></small>
 
         </div>
         <div class="form-check mt-4">
-            <input class="form-check-input" type="checkbox" id="acceptPoliciesCreditCard" name="check" required>
+            <input class="form-check-input" type="checkbox" id="acceptPoliciesCreditCard" name="check" >
             <label class="form-check-label" for="acceptPoliciesCreditCard">
                 Acepto las <a href="#" data-toggle="modal" data-target="#policiesModal">políticas y condiciones</a>
             </label>
@@ -53,12 +53,12 @@
         <h4 class="my-3">Pago con PayPal</h4>
         <div class="form-group">
             <label for="paypalEmail">Correo Electrónico de PayPal:</label>
-            <input type="email" class="form-control" id="paypalEmail" name="paypalEmail" placeholder="Correo electrónico" required>
+            <input type="email" class="form-control" id="paypalEmail" name="paypalEmail" placeholder="Correo electrónico" >
             <small class="form-text text-danger"><strong>{{$errors->first('paypalEmail')}}</strong></small>
 
         </div>
         <div class="form-check mt-4">
-            <input class="form-check-input" type="checkbox" id="acceptPoliciesPaypal" name="check" required>
+            <input class="form-check-input" type="checkbox" id="acceptPoliciesPaypal" name="check" >
             <label class="form-check-label" for="acceptPoliciesPaypal">
                 Acepto las <a href="#" data-toggle="modal" data-target="#policiesModal">políticas y condiciones</a>
                 </label>

@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ControladorVistas;
 
-Route::get('/',[ControladorVistas::class,'login'])->name('login');
+Route::get('/',[ControladorVistas::class,'inicio'])->name('login');
+Route::resource('usuario',UsuarioController::class);
+
+Route::get('/login',[ControladorVistas::class,'login'])->name('login2');
 Route::post('/iniciar-sesion',[ControladorVistas::class,'loginValidar'])->name('login');
 Route::get('/recuperacion',[ControladorVistas::class,'recuperacion'])->name('rutarecuperacion');
 
@@ -12,7 +16,7 @@ Route::post('/registro',[ControladorVistas::class,'registro'])->name('rutaregis'
 
 
 Route::get('/Desicion',[ControladorVistas::class,'DesicionBusqueda'])->name('DesicionBusqueda');
-Route::get('/busqueda/hoteles',[ControladorVistas::class,'busquedahoteles'])->name('rutabuscahoteles');
+Route::get('/Busqueda/hoteles',[ControladorVistas::class,'busquedahoteles'])->name('rutabuscahoteles');
 Route::post('/BuscaHotel',[ControladorVistas::class,'BuscaHotel'])->name('BuscarHotel');
 Route::get('/resultado/hotel',[ControladorVistas::class,'resultadohotel'])->name('resultadohotel');
 Route::post('/resultado/filtro',[ControladorVistas::class,'filtroshotel'])->name('filtroshotel');

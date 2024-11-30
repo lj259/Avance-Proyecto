@@ -9,23 +9,23 @@
             @csrf
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="txtnombre" required placeholder="Ingresa tu nombre" value="{{old('txtnombre')}}">
+                <input type="text" class="form-control" id="nombre" name="txtnombre"  placeholder="Ingresa tu nombre" value="{{old('txtnombre')}}">
                 <small class="form-text text-danger"><strong>{{$errors->first('txtnombre')}}</strong></small>
 
             </div>
             <div class="mb-3">
                 <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="txtapellido" required placeholder="Ingresa tu apellido" value="{{old('txtapellido')}}">
+                <input type="text" class="form-control" id="apellido" name="txtapellido"  placeholder="Ingresa tu apellido" value="{{old('txtapellido')}}">
                 <small class="form-text text-danger"><strong>{{$errors->first('txtapellido')}}</strong></small>
             </div>
             <div class="mb-3">
                 <label for="correo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" name="txtcorreo" required placeholder="nombre@dominio.com" value="{{old('txtcorreo')}}">
+                <input type="email" class="form-control" id="correo" name="txtcorreo"  placeholder="nombre@dominio.com" value="{{old('txtcorreo')}}">
                 <small class="form-text text-danger"><strong>{{$errors->first('txtcorreo')}}</strong></small>
             </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña" name="txtcontraseña" required placeholder="Ingresa tu contraseña">
+                <input type="password" class="form-control" id="contraseña" name="txtcontraseña"  placeholder="Ingresa tu contraseña">
                 <small class="form-text text-danger"><strong>{{$errors->first('txtcontraseña')}}</strong></small>
             </div>
            

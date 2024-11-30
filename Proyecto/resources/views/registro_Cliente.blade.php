@@ -7,31 +7,31 @@
         <form action="/registro" method="POST">
             @csrf
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                 <label for="nombre">Nombre</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('nombre')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required>
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
                 <label for="apellido">Apellido</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('apellido')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico" required>
+                <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico">
                 <label for="correo">Correo Electronico</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('correo')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono"  required>
+                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" >
                 <label for="telefono">Telefono</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('telefono')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="Contraseña">
                 <label for="contraseña">Contraseña</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('contraseña')}}</strong></small>
 

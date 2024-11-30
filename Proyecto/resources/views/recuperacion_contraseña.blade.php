@@ -41,7 +41,7 @@
             </div>
             <p id="emailDisplay" class="text-muted"></p>
             <button type="submit" class="btn btn-primary btn-block">Guardar Nueva Contraseña</button>
-            <button type="button" class="btn btn-secondary btn-block" id="redirectToHomeButton">Volver al Inicio</button>
+            <a href="/" class="btn btn-secondary btn-block" id="redirectToHomeButton">Volver al Inicio</a>
         </form>
     </div>
 

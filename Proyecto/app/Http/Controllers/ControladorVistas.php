@@ -16,6 +16,9 @@ use App\Http\Requests\agregarHotel;
 
 class ControladorVistas extends Controller
 {
+    public function inicio(){
+    return view('inicio');
+    }
     public function login(){
     return view('login');
     }
@@ -40,7 +43,7 @@ class ControladorVistas extends Controller
     public function registro(validadorRegistroCliente $peticion){
         $valido = $peticion->input('nombre');
         session()->flash('Exito','Registro exitoso de: ' .$valido);
-        return to_route('login');
+        return to_route('login2');
         }
 
     public function DesicionBusqueda(){
