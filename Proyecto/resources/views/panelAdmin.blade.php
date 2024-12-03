@@ -28,8 +28,8 @@
                                     @foreach ($vuelos as $vuelo)
                                     <tr>
                                         <td>{{ $vuelo->num_vuelo }}</td>
-                                        <td>{{ $vuelo->origen }}</td>
-                                        <td>{{ $vuelo->destino }}</td>
+                                        <td>{{ $vuelo->origen_id }}</td>
+                                        <td>{{ $vuelo->destino_id }}</td>
                                         <td>
                                             <a href="{{ route('vuelo.edit', $vuelo->id) }}" class="btn btn-warning btn-sm">Editar</a>
                                             <form action="{{ route('vuelo.destroy', $vuelo->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar este vuelo?');">

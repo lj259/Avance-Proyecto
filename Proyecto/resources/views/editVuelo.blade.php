@@ -27,9 +27,9 @@
         </div>
 
         <div class="mb-3">
-            <label for="destino" class="form-label">Destino:</label>
-            <input type="text" class="form-control" name="destino" value="{{$vuelo->destino}}">
-            <small class="form-text text-danger"><strong>{{$errors->first('destino')}}</strong></small>
+            <label for="destino_id" class="form-label">Destino:</label>
+            <input type="text" class="form-control" name="destino_id" value="{{$vuelo->destino_id}}">
+            <small class="form-text text-danger"><strong>{{$errors->first('destino_id')}}</strong></small>
         </div>
 
         <div class="mb-3">

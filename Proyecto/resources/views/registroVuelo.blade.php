@@ -20,15 +20,29 @@
         </div>
 
         <div class="mb-3">
-            <label for="origen" class="form-label">Origen:</label>
-            <input type="text" class="form-control" name="origen">
-            <small class="form-text text-danger"><strong>{{$errors->first('origen')}}</strong></small>
+            <label for="origen_id" class="form-label">Origen</label>
+            <select name="origen_id" class="form-control">
+                <option>Selecciona una ciudad</option>
+                @isset($destinos)
+                    @foreach($destinos as $destino)
+                    <option value="{{$destino->id}}">{{$destino->nombre}}</option>
+                    @endforeach
+                @endisset
+            </select>
+            <small class="form-text text-danger"><strong>{{$errors->first('origen_id')}}</strong></small>
         </div>
 
         <div class="mb-3">
-            <label for="destino" class="form-label">Destino:</label>
-            <input type="text" class="form-control" name="destino">
-            <small class="form-text text-danger"><strong>{{$errors->first('destino')}}</strong></small>
+            <label for="destino_id" class="form-label">Destino</label>
+            <select name="destino_id" class="form-control">
+                <option>Selecciona una ciudad</option>
+                @isset($destinos)
+                    @foreach($destinos as $destino)
+                    <option value="{{$destino->id}}">{{$destino->nombre}}</option>
+                    @endforeach
+                @endisset
+            </select>
+            <small class="form-text text-danger"><strong>{{$errors->first('destino_id')}}</strong></small>
         </div>
 
         <div class="mb-3">

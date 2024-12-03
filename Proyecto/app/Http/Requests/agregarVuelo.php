@@ -24,8 +24,8 @@ class agregarVuelo extends FormRequest
         return [
         'aerolinea' => 'required|string|max:150',
         'num_vuelo' => 'required|string|max:10|unique:vuelos,num_vuelo',
-        'origen' => 'required|string|max:150',
-        'destino' => 'required|string|max:150',
+        'origen_id' => 'required',
+        'destino_id' => 'required',
         'fecha_salida' => 'required|date',
         'fecha_llegada' => 'required|date',
         'hora_salida' => 'required|date_format:H:i',
