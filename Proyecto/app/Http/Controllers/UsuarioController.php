@@ -14,7 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $datos=usuario::all();
+        return view("",$datos);
     }
 
     /**
@@ -37,9 +38,9 @@ class UsuarioController extends Controller
         $addCliente->telefono = $request->input('telefono');
         $addCliente->contraseña = $request->input('contraseña');
         $addCliente->save();
-        $msj = $request->input('txtnombre');
+        $msj = $request->input('nombre');
         session()->flash('Exito','Se guardo el cliente: '.$msj);
-        return redirect()->back();
+        return redirect()->route('login');
     }
 
     /**
@@ -55,7 +56,7 @@ class UsuarioController extends Controller
      */
     public function edit(usuario $usuario)
     {
-        //
+        return view('edicionUsuario',$usuario);
     }
 
     /**

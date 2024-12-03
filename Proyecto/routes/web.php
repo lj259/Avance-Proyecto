@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VueloController;
 use App\Http\Controllers\ControladorVistas;
 
-Route::get('/',[ControladorVistas::class,'inicio'])->name('login');
+Route::get('/',[ControladorVistas::class,'inicio'])->name('index');
 Route::resource('usuario',UsuarioController::class);
+Route::resource('vuelo',VueloController::class);
 
-Route::get('/login',[ControladorVistas::class,'login'])->name('login2');
+Route::get('/login',[ControladorVistas::class,'login'])->name('login');
 Route::post('/iniciar-sesion',[ControladorVistas::class,'loginValidar'])->name('login');
 Route::get('/recuperacion',[ControladorVistas::class,'recuperacion'])->name('rutarecuperacion');
 

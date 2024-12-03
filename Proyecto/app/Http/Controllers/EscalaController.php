@@ -28,11 +28,6 @@ class EscalaController extends Controller
      */
     public function store(Request $request)
     {
-        $addEscala = new escala();
-        $addEscala->destino = $request->input('destino');
-        $addEscala->hora_salida = $request->input('hora_salida');
-        $addEscala->hora_llegada = $request->input('hora_llegada');
-        $addEscala->vuelo_id = $request->input('vuelo_id');
 
     }
 

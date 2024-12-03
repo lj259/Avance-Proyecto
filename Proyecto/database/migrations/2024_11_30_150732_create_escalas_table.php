@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('escalas', function (Blueprint $table) {
             $table->id();
             $table->string( 'destino',150);
-            $table->integer('hora_salida');//formato 24hr, convertir a 12hr
-            $table->integer('hora_llegada');//formato 24hr, convertir a 12hr
+            $table->time('hora_salida');//formato 24hr, convertir a 12hr
+            $table->time('hora_llegada');//formato 24hr, convertir a 12hr
             $table->unsignedBigInteger('vuelo_id');
             $table->foreign('vuelo_id')->references('id')->on('vuelos')->onDelete('cascade');
             $table->timestamps();

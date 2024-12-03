@@ -4,28 +4,28 @@
 
 <div class="container p-4 bg-white rounded shadow mt-4" style="max-width: 400px;">
         <h2 class="text-center mb-4">Registro de Clientes</h2>
-        <form action="/registro" method="POST">
+        <form action="{{route('usuario.store')}}" method="POST">
             @csrf
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
+                <label for="nombre">Nombre</label>                
                 <small class="form-text text-danger"><strong>{{$errors->first('nombre')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
+                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" value="{{old('apellido')}}">
                 <label for="apellido">Apellido</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('apellido')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico">
+                <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico" value="{{old('correo')}}">
                 <label for="correo">Correo Electronico</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('correo')}}</strong></small>
 
             </div>
             <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" >
+                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" value="{{old(key: 'telefono')}}">
                 <label for="telefono">Telefono</label>
                 <small class="form-text text-danger"><strong>{{$errors->first('telefono')}}</strong></small>
 

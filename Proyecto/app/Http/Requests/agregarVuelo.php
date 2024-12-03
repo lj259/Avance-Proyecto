@@ -22,11 +22,20 @@ class agregarVuelo extends FormRequest
     public function rules(): array
     {
         return [
-            'numero_vuelo' => 'required|numeric',
-            'origen' => 'required|in:CDMX,GDL,MTY,CUN,PVR,BJX,SJD',
-            'destino' => 'required|in:CDMX,GDL,MTY,CUN,PVR,BJX,SJD|different:origen',
-            'fecha_salida' => 'required|date|after_or_equal:today',
-            'tarifa' => 'required|numeric|min:1'
+        'aerolinea' => 'required|string|max:150',
+        'num_vuelo' => 'required|string|max:10|unique:vuelos,num_vuelo',
+        'origen' => 'required|string|max:150',
+        'destino' => 'required|string|max:150',
+        'fecha_salida' => 'required|date',
+        'fecha_llegada' => 'required|date',
+        'hora_salida' => 'required|date_format:H:i',
+        'hora_llegada' => 'required|date_format:H:i',
+        'max_pasajeros' => 'required|integer|min:1',
+        
+        'precio' => 'required|integer|min:1',
+        'escalas.*.destino' => 'nullable|string|max:150',
+        'escalas.*.hora_salida' => 'nullable|date_format:H:i|min:0|max:2359',
+        'escalas.*.hora_llegada' => 'nullable|date_format:H:i|min:0|max:2359',
         ];
     }
 }

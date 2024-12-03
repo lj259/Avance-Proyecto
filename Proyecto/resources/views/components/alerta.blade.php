@@ -2,6 +2,6 @@
         Swal.fire({
         text: '{{$texto}}',
         icon: "{{$icono}}",
-        timer: 1500
+        timer: 10000
         });
     </script>

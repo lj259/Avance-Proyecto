@@ -78,7 +78,7 @@ class ControladorVistas extends Controller
     public function BuscaVuelo(validadorBusquedaVuelos $peticion){
         $valido = $peticion->input('destination');
         session()->flash('Exito','Vuelos hacia: ' .$valido);
-        return to_route('resultadovuelo');    
+        return to_route('resultado_vuelos');    
         }
     
     public function resultadovuelo(){

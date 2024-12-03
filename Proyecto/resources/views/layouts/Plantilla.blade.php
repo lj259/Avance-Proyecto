@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>@yield('Titulo')</title>
 </head>
 <body>
@@ -23,7 +24,11 @@
                     </li>
                     <li class="nav-item">
                         <span class="navbar-toggler-icon">icono</span>
-                        <a href="#" class="nav-link" aria-current="page">Vuelos</a>
+                        <a href="{{route('resultadovuelo')}}" class="nav-link" aria-current="page">Vuelos</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="navbar-toggler-icon">icono</span>
+                        <a href="{{route('vuelo.create')}}" class="nav-link" aria-current="page">Registro Vuelos</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link" aria-current="page">carrito</a>
@@ -38,7 +43,7 @@
                             <img src="..." alt="Perfil" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" aria-current="page">Registro Usuarios</a>
+                            <a href="#" class="nav-link" aria-current="page">Iniciar sesion</a>
                         </li>
                     </ul>
                     
