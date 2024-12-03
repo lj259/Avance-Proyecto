@@ -10,32 +10,37 @@ class HotelController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index()
+    {
+        $datos=hotel::all();
+        return view("",$datos);
+    }
     public function filtros($request)
     {
         // Obtener los filtros desde la solicitud
-    $query = Hotel::query();
+        $query = Hotel::query();
 
-    if ($request->has('categoria')) {
-        $query->where('calificacion', '=', $request->input('categoria'));
-    }
+        if ($request->has('categoria')) {
+            $query->where('calificacion', '=', $request->input('categoria'));
+        }
 
-    if ($request->has('precio_min') && $request->has('precio_max')) {
-        $query->whereBetween('precio', [$request->input('precio_min'), $request->input('precio_max')]);
-    }
+        if ($request->has('precio_min') && $request->has('precio_max')) {
+            $query->whereBetween('precio', [$request->input('precio_min'), $request->input('precio_max')]);
+        }
 
-    if ($request->has('distancia_max')) {
-        $query->where('distancia', '<=', $request->input('distancia_max'));
-    }
+        if ($request->has('distancia_max')) {
+            $query->where('distancia', '<=', $request->input('distancia_max'));
+        }
 
-    if ($request->has('servicios')) {
-        $query->whereJsonContains('servicios', $request->input('servicios')); // Asegúrate de que servicios sea un campo JSON
-    }
+        if ($request->has('servicios')) {
+            $query->whereJsonContains('servicios', $request->input('servicios')); // Asegúrate de que servicios sea un campo JSON
+        }
 
-    // Obtener los resultados
-    $hoteles = $query->get();
+        // Obtener los resultados
+        $hoteles = $query->get();
 
-    // Devolver los resultados a la vista
-    return view('hoteles.index', compact('hoteles'));
+        // Devolver los resultados a la vista
+        return view('hoteles.index', compact('hoteles'));
     }
 
     /**
@@ -43,7 +48,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('registro_hotel');
     }
 
     /**
@@ -80,7 +85,7 @@ class HotelController extends Controller
      */
     public function edit(hotel $hotel)
     {
-        //
+        return view("",$hotel);
     }
 
     /**
