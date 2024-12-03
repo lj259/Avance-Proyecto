@@ -9,13 +9,13 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade shadow">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="{{ asset('imagenes/Hotel1.jpg') }}" class="d-block w-100 rounded" alt="Hotel1">
+          <img src="{{ asset('imagenes/Turista1.jpg') }}" class="d-block w-100 rounded" alt="Turista1">
         </div>
         <div class="carousel-item">
-          <img src="{{ asset('imagenes/Hotel2.jpg') }}" class="d-block w-100 rounded" alt="Hotel2">
+          <img src="{{ asset('imagenes/Turista2.jpg') }}" class="d-block w-100 rounded" alt="Turista2">
         </div>
         <div class="carousel-item">
-          <img src="{{ asset('imagenes/Hotel3.jpg') }}" class="d-block w-100 rounded" alt="Hotel3">
+          <img src="{{ asset('imagenes/Turista3.jpg') }}" class="d-block w-100 rounded" alt="Turista3">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -31,32 +31,32 @@
 
   <!-- Hoteles -->
   <div class="container text-center my-5">
-    <h3 class="text-primary mb-4">Nuestros Mejores Hoteles</h3>
+    <h3 class="text-primary mb-4">Nuestros Mejores Destinos</h3>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card shadow h-100">
-          <img src="{{ asset('imagenes/Hotel1.jpg') }}" class="card-img-top rounded" alt="Hotel1">
+          <img src="{{ asset('imagenes/Turista1.jpg') }}" class="card-img-top rounded" alt="Turista1">
           <div class="card-body">
-            <h5 class="card-title text-primary">Hotel de Lujo</h5>
-            <p class="card-text">Disfruta de una estancia inolvidable con todas las comodidades que mereces.</p>
+            <h5 class="card-title text-primary">Destino Aventura</h5>
+            <p class="card-text">Descubre paisajes impresionantes y actividades al aire libre únicas.</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card shadow h-100">
-          <img src="{{ asset('imagenes/Hotel2.jpg') }}" class="card-img-top rounded" alt="Hotel2">
+          <img src="{{ asset('imagenes/Turista2.jpg') }}" class="card-img-top rounded" alt="Turista2">
           <div class="card-body">
-            <h5 class="card-title text-primary">Hotel Familiar</h5>
-            <p class="card-text">El lugar ideal para pasar tiempo en familia con actividades para todos.</p>
+            <h5 class="card-title text-primary">Destino Cultural</h5>
+            <p class="card-text">Sumérgete en la historia y tradiciones de los lugares más emblemáticos.</p>
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card shadow h-100">
-          <img src="{{ asset('imagenes/Hotel3.jpg') }}" class="card-img-top rounded" alt="Hotel3">
+          <img src="{{ asset('imagenes/Turista3.jpg') }}" class="card-img-top rounded" alt="Turista3">
           <div class="card-body">
-            <h5 class="card-title text-primary">Hotel Económico</h5>
-            <p class="card-text">Excelente calidad a un precio accesible. Perfecto para tus aventuras.</p>
+            <h5 class="card-title text-primary">Destino de Relajación</h5>
+            <p class="card-text">Encuentra la calma que necesitas en los destinos más tranquilos.</p>
           </div>
         </div>
       </div>
