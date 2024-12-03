@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('aerolinea',150);
             $table->string('num_vuelo',10);
-            $table->string('origen',150);
-            $table->unsignedBigInteger('destino');
+            $table->unsignedBigInteger('origen_id');
+            $table->unsignedBigInteger('destino_id');
             $table->date('fecha_salida');
             $table->date('fecha_llegada');
             $table->time('hora_salida');
@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer('max_pasajeros');
             $table->integer('pasajeros');
             $table->integer('precio');
-            $table->foreign('destino')->references('id')->on('destinos');
+            $table->foreign('destino_id')->references('id')->on('destinos');
+            $table->foreign('origen_id')->references('id')->on('destinos');
             $table->timestamps();
         });
     }

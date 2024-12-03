@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\vuelo;
 use App\Models\escala;
+use App\Models\destino;
 use Illuminate\Http\Request;
 use App\Http\Requests\agregarVuelo;
 use Illuminate\Support\Carbon;
@@ -88,7 +89,8 @@ class VueloController extends Controller
      */
     public function create()
     {
-        return view("registroVuelo");
+        $destinos = destino::all();
+        return view("registroVuelo",['destinos'=>$destinos]);
     }
 
     /**
@@ -99,8 +101,8 @@ class VueloController extends Controller
         $addVuelo = new Vuelo();
         $addVuelo->aerolinea = $request->input("aerolinea");
         $addVuelo->num_vuelo = $request->input("num_vuelo");
-        $addVuelo->origen = $request->input("origen");
-        $addVuelo->destino = $request->input("destino");
+        $addVuelo->origen_id = $request->input("origen_id");
+        $addVuelo->destino_id = $request->input("destino_id");
         $addVuelo->fecha_salida = $request->input("fecha_salida");
         $addVuelo->fecha_llegada = $request->input("fecha_llegada");
         $addVuelo->hora_salida = $request->input("hora_salida");
@@ -122,7 +124,7 @@ class VueloController extends Controller
             }
         }
         $msj1 = $request->input("num_vuelo");
-        $msj2 = $request->input("origen");
+        $msj2 = $request->input("origen_id");
         $msj3 = $request->input("destino");
         session()->flash("Exito","Se ha guardado el vuelo ".$msj1." de ".$msj2." hacia ".$msj3);
         
@@ -169,8 +171,8 @@ class VueloController extends Controller
         $addVuelo = Vuelo::find($id);
         $addVuelo->aerolinea = $request->input("aerolinea");
         $addVuelo->num_vuelo = $request->input("num_vuelo");
-        $addVuelo->origen = $request->input("origen");
-        $addVuelo->destino = $request->input("destino");
+        $addVuelo->origen_id = $request->input("origen_id");
+        $addVuelo->destino_id = $request->input("destino_id");
         $addVuelo->fecha_salida = $request->input("fecha_salida");
         $addVuelo->fecha_llegada = $request->input("fecha_llegada");
         $addVuelo->hora_salida = $request->input("hora_salida");
@@ -185,7 +187,7 @@ class VueloController extends Controller
         $addVuelo->escalas()->delete();
         foreach ($escalas as $escalaData) {
             $addEscala = new Escala();
-            $addEscala->destino = $escalaData['destino'];
+            $addEscala->destino_id = $escalaData['destino_id'];
             $addEscala->hora_salida = $escalaData['hora_salida'];
             $addEscala->hora_llegada = $escalaData['hora_llegada'];
             $addEscala->vuelo_id = $addVuelo->id;
@@ -194,7 +196,7 @@ class VueloController extends Controller
     }
 
         $msj1 = $request->input("num_vuelo");
-        $msj2 = $request->input("origen");
+        $msj2 = $request->input("origen_id");
         $msj3 = $request->input("destino");
         session()->flash("Exito","Se ha guardado el vuelo ".$msj1." de ".$msj2." hacia ".$msj3);
         
@@ -222,8 +224,8 @@ class VueloController extends Controller
     {
         $vuelo = vuelo::find($id);
         $msj1 = $vuelo->num_vuelo;
-        $msj2 = $vuelo->origen;
-        $msj3 = $vuelo->destino;
+        $msj2 = $vuelo->origen_id;
+        $msj3 = $vuelo->destino_id;
         $vuelo->escalas()->delete();
         $vuelo->delete();
         session()->flash("Exito","Se ha eliminado el vuelo ".$msj1." de ".$msj2." hacia ".$msj3);
