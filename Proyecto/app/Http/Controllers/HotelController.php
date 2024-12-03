@@ -4,72 +4,98 @@ namespace App\Http\Controllers;
 
 use App\Models\hotel;
 use Illuminate\Http\Request;
+use App\Http\Requests\agregarHotel;
+use App\Models\destino;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class HotelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $datos=hotel::all();
-        return view("",$datos);
-    }
-    public function filtros($request)
-    {
-        // Obtener los filtros desde la solicitud
-        $query = Hotel::query();
+    public function index(Request $request)
+{
+    try {
+        $query = hotel::query();
 
-        if ($request->has('categoria')) {
-            $query->where('calificacion', '=', $request->input('categoria'));
+        if ($request->filled('nombre')) {
+            $query->where('nombre', 'like', '%' . $request->nombre . '%');
         }
 
-        if ($request->has('precio_min') && $request->has('precio_max')) {
-            $query->whereBetween('precio', [$request->input('precio_min'), $request->input('precio_max')]);
+        if ($request->filled('precio')) {
+            $query->where('precio', '<=', $request->precio);
         }
 
-        if ($request->has('distancia_max')) {
-            $query->where('distancia', '<=', $request->input('distancia_max'));
+        if ($request->filled('categoria')) {
+            $query->where('categoria', $request->categoria);
         }
 
-        if ($request->has('servicios')) {
-            $query->whereJsonContains('servicios', $request->input('servicios')); // Asegúrate de que servicios sea un campo JSON
+        if ($request->filled('ubicacion')) {
+            $query->where('ubicacion', 'like', '%' . $request->ubicacion . '%');
         }
 
-        // Obtener los resultados
+        if ($request->filled('disponibilidad')) {
+            $query->where('disponibilidad', $request->disponibilidad);
+        }
+
+        // Obtener los hoteles filtrados
         $hoteles = $query->get();
 
-        // Devolver los resultados a la vista
-        return view('hoteles.index', compact('hoteles'));
+        return response()->json(['hoteles' => $hoteles]);
+    } catch (\Exception $e) {
+        // Captura cualquier excepción y devuelve el error
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
+
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('registro_hotel');
+        $destinos = destino::all();
+        return view('registroHotel',['destinos'=>$destinos]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(agregarHotel $request)
     {
-        $addHotel = new hotel();
-        $addHotel->nombre = $request->input('nombre');
-        $addHotel->habitaciones = $request->input('habitaciones');
-        $addHotel->adultos = $request->input('adultos');
-        $addHotel->niños = $request->input('niños');
-        $addHotel->calificacion = $request->input('calificacion');
-        $addHotel->ubicacion = $request->input('ubicacion');
-        $addHotel->distancia = $request->input('distancia');
-        $addHotel->turistico = $request->input('turistico');
-        $addHotel->servicios = $request->input('servicios');
-        $addHotel->save();
+        DB::table('hoteles')->insert([
+            'nombre' => $request->input('nombre'),
+            'habitaciones' => $request->input('habitaciones'),
+            'capacidad' => $request->input('capacidad'),
+            'precio' => $request->input('precio'),
+            'calificacion' => $request->input('calificacion'),
+            'destino_id' => $request->input('ubicacion'),
+            'distancia_centro' => $request->input('distancia'),
+            'puntos_turisticos' => $request->input('turistico'),
+            'servicios' => $request->input('servicios'),
+            'created_at' => Carbon::now(), // Añade automáticamente la fecha de creación
+            'updated_at' => Carbon::now()  // Añade automáticamente la fecha de actualización
+        ]);
         $msj = $request->input('nombre');
         session()->flash('Exito','Se guardo el Hotel: '.$msj);
-        return redirect()->back();
+
+        $vuelos = DB::table('vuelos')
+            ->join('destinos', 'vuelos.destino_id', '=', 'destinos.id')
+            ->select('vuelos.*', 'destinos.nombre as destino_nombre')
+            ->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get();                
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos ,
+        ]);
     }
 
     /**
@@ -77,36 +103,55 @@ class HotelController extends Controller
      */
     public function show(hotel $hotel)
     {
-        //
+       //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(hotel $hotel)
+    public function edit(string $id)
     {
-        return view("",$hotel);
+        $hotel = DB::table('hoteles')->where('id', $id)->first();
+
+        return view("editHotel", ["hotel"=> $hotel]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(agregarHotel $request, string $id)
     {
-        $updateHotel = hotel::find($id);
-        $updateHotel->nombre = $request->input('nombre');
-        $updateHotel->habitaciones = $request->input('habitaciones');
-        $updateHotel->adultos = $request->input('adultos');
-        $updateHotel->niños = $request->input('niños');
-        $updateHotel->calificacion = $request->input('calificacion');
-        $updateHotel->ubicacion = $request->input('ubicacion');
-        $updateHotel->distancia = $request->input('distancia');
-        $updateHotel->turistico = $request->input('turistico');
-        $updateHotel->servicios = $request->input('servicios');
-        $updateHotel->save();
+        DB::table('hoteles')
+        ->where('id', $id)
+        ->update([
+            'nombre' => $request->input('nombre'),
+            'habitaciones' => $request->input('habitaciones'),
+            'capacidad' => $request->input('capacidad'),
+            'precio' => $request->input('precio'),
+            'calificacion' => $request->input('calificacion'),
+            'destino_id' => $request->input('ubicacion'),
+            'distancia_centro' => $request->input('distancia'),
+            'puntos_turisticos' => $request->input('turistico'),
+            'servicios' => $request->input('servicios'),
+            'updated_at' => Carbon::now() // Actualiza la fecha de actualización automáticamente
+        ]);
         $msj = $request->input('nombre');
         session()->flash('Exito','Se actualizo el Hotel: '.$msj);
-        return redirect()->back();
+        $vuelos = DB::table('vuelos')
+            ->join('destinos', 'vuelos.destino_id', '=', 'destinos.id')
+            ->select('vuelos.*', 'destinos.nombre as destino_nombre')
+            ->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);
     }
 
     /**
@@ -114,9 +159,8 @@ class HotelController extends Controller
      */
     public function destroy(string $id)
     {
-        $Hotel = hotel::find($id);
-        $msj = $Hotel->nombre;
-        $Hotel->delete();
+        $msj = DB::table('hoteles')->where('id', $id)->value('nombre');
+        DB::table('hoteles')->where('id', $id)->delete();
         session()->flash('Exito','Se elimino la publicacion del Hotel '.$msj);
         return redirect()->back();
     }

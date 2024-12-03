@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\destino;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DestinoController extends Controller
 {
@@ -20,7 +21,7 @@ class DestinoController extends Controller
      */
     public function create()
     {
-        //
+        return view("registroDestino");
     }
 
     /**
@@ -29,11 +30,23 @@ class DestinoController extends Controller
     public function store(Request $request)
     {
         $addDestino = new destino;
-        $addDestino = $request->input('nombre');
+        $addDestino->nombre = $request->input('nombre');
         $addDestino->save();
         $msj = $request->input('nombre');
-        session()->flash('Exito','Se a guardado el destino'.$msj);
-        return redirect()->back();
+        session()->flash('Exito','Se a guardado el destino: '.$msj);
+        
+        $vuelos = DB::table('vuelos')->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);;
     }
 
     /**
@@ -62,7 +75,19 @@ class DestinoController extends Controller
         $updateDestino->save();
         $msj = $request->input('nombre');
         session()->flash('Exito','Se a actualizado el destino'.$msj);
-        return redirect()->back();
+        
+        $vuelos = DB::table('vuelos')->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);;
     }
 
     /**
@@ -74,6 +99,18 @@ class DestinoController extends Controller
         $msj = $destino->nombre;
         $destino->delete();
         session()->flash('Exito','Se a eliminado el destino'.$msj);
-        return redirect()->back();
+        
+        $vuelos = DB::table('vuelos')->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\Validadorlogin; 
 use App\Http\Requests\validadorRegistroCliente;
@@ -21,6 +23,24 @@ class ControladorVistas extends Controller
     }
     public function login(){
     return view('login');
+    }
+    public function panelAdmin(){
+        $vuelos = DB::table('vuelos')
+            ->join('destinos', 'vuelos.destino_id', '=', 'destinos.id')
+            ->select('vuelos.*', 'destinos.nombre as destino_nombre')
+            ->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        // Devuelve la vista con las variables
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);
     }
 
     public function loginValidar(Validadorlogin $peticion){

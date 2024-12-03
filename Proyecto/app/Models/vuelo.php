@@ -11,5 +11,9 @@ class vuelo extends Model
     {
         return $this->hasMany(escala::class);
     }
+    public function destino()
+    {
+        return $this->belongsTo(destino::class);
+    }
 
 }

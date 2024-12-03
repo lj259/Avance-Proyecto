@@ -20,7 +20,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <span class="navbar-toggler-icon">icono</span>
-                        <a href="{{route('rutabuscahoteles')}}" class="nav-link" aria-current="page">Hoteles</a>
+                        <a href="{{route('resultadohotel')}}" class="nav-link" aria-current="page">Hoteles</a>
                     </li>
                     <li class="nav-item">
                         <span class="navbar-toggler-icon">icono</span>

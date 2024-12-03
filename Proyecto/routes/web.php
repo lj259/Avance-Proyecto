@@ -3,13 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\VueloController;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\DestinoController;
 use App\Http\Controllers\ControladorVistas;
 
 Route::get('/',[ControladorVistas::class,'inicio'])->name('index');
 Route::resource('usuario',UsuarioController::class);
 Route::resource('vuelo',VueloController::class);
+Route::resource('hotel',HotelController::class);
+Route::resource('destino',DestinoController::class);
 
 Route::get('/login',[ControladorVistas::class,'login'])->name('login');
+Route::get('/admin/panel',[ControladorVistas::class,'panelAdmin'])->name('panelAdmin');
 Route::post('/iniciar-sesion',[ControladorVistas::class,'loginValidar'])->name('login');
 Route::get('/recuperacion',[ControladorVistas::class,'recuperacion'])->name('rutarecuperacion');
 

@@ -22,7 +22,15 @@ class agregarHotel extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre_hotel' => 'required|string|max:255'
+        'nombre' => 'required|string|max:150', 
+        'habitaciones' => 'required|integer|min:1',
+        'capacidad' => 'required|integer|min:1', 
+        'precio' => 'required|numeric|min:0', 
+        'calificacion' => 'nullable|numeric|min:0|max:5', 
+        'ubicacion' => 'required|string|max:150', 
+        'distancia' => 'nullable|numeric|min:0', 
+        'turistico' => 'required|string|max:150', 
+        'servicios' => 'nullable|string|max:150', 
         ];
     }
 }
