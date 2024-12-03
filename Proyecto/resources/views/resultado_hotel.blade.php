@@ -11,17 +11,31 @@
         <div class="card-body">
             <form id="filtroForm" method="GET" class="row g-3">
                 @csrf
+                <div class="mb-3">
+                    <label for="destino_id" class="form-label">Origen</label>
+                    <select name="destino_id" class="form-control">
+                        <option>Selecciona una ciudad</option>
+                        @isset($destinos)
+                            @foreach($destinos as $destino)
+                            <option value="{{$destino->id}}">{{$destino->nombre}}</option>
+                            @endforeach
+                        @endisset
+                    </select>
+                    <small class="form-text text-danger"><strong>{{$errors->first('destino_id')}}</strong></small>
+                </div>
                 <div class="col-md-6">
                     <label for="nombre" class="form-label">Nombre del Hotel:</label>
-                    <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control">
+                    <input type="text" id="nombre" name="nombre" class="form-control">
                 </div>
+
                 <div class="col-md-6">
                     <label for="precio" class="form-label">Precio máximo:</label>
-                    <input type="number" id="precio" name="precio" value="{{ old('precio') }}" class="form-control">
+                    <input type="number" id="precio" name="precio" class="form-control">
                 </div>
+
                 <div class="col-md-6">
-                    <label for="categoria" class="form-label">Categoría:</label>
-                    <select id="categoria" name="categoria" class="form-select">
+                    <label for="calificacion" class="form-label">Categoría:</label>
+                    <select id="calificacion" name="calificacion" class="form-select">
                         <option value="">Seleccione</option>
                         <option value="1">1 Estrella</option>
                         <option value="2">2 Estrellas</option>
@@ -30,18 +44,7 @@
                         <option value="5">5 Estrellas</option>
                     </select>
                 </div>
-                <div class="col-md-6">
-                    <label for="ubicacion" class="form-label">Ubicación:</label>
-                    <input type="text" id="ubicacion" name="ubicacion" value="{{ old('ubicacion') }}" class="form-control">
-                </div>
-                <div class="col-md-6">
-                    <label for="disponibilidad" class="form-label">Disponibilidad:</label>
-                    <select id="disponibilidad" name="disponibilidad" class="form-select">
-                        <option value="">Seleccione</option>
-                        <option value="Disponible">Disponible</option>
-                        <option value="No disponible">No disponible</option>
-                    </select>
-                </div>
+
                 <div class="col-12 text-end">
                     <button type="submit" class="btn btn-primary">Filtrar</button>
                 </div>
@@ -59,11 +62,10 @@
                     <th>Precio por noche</th>
                     <th>Ubicación</th>
                     <th>Disponibilidad</th>
-                    <th>Descripción</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- La tabla se llenará dinámicamente -->
+                
             </tbody>
         </table>
     </div>
@@ -87,17 +89,16 @@
                             var row = `
                                 <tr>
                                     <td>${hotel.nombre}</td>
-                                    <td>${hotel.categoria} Estrellas</td>
+                                    <td>${hotel.calificacion} Estrellas</td>
                                     <td>${hotel.precio}</td>
-                                    <td>${hotel.ubicacion}</td>
-                                    <td>${hotel.disponibilidad}</td>
-                                    <td>${hotel.descripcion}</td>
+                                    <td>${hotel.destino_id}</td>
+                                    <td>${hotel.disponibilidad ? 'Disponible' : 'No disponible'}</td>
                                 </tr>
                             `;
                             $('#hotelesTable tbody').append(row);
                         });
                     } else {
-                        $('#hotelesTable tbody').append('<tr><td colspan="6" class="text-center">No se encontraron hoteles.</td></tr>');
+                        $('#hotelesTable tbody').append('<tr><td colspan="5" class="text-center">No se encontraron hoteles.</td></tr>');
                     }
                 },
                 error: function(xhr, status, error) {

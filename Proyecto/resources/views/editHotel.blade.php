@@ -40,7 +40,14 @@
 
         <div class="mb-3">
             <label for="ubicacion" class="form-label">Ubicacion:</label>
-            <input type="text" class="form-control" name="ubicacion" value="{{$hotel->ubicacion}}">
+            <select name="ubicacion" class="form-control">
+                <option>Selecciona una ciudad</option>
+                @isset($destinos)
+                    @foreach($destinos as $destino)
+                    <option value="{{$destino->id}}">{{$destino->nombre}}</option>
+                    @endforeach
+                @endisset
+            </select>
             <small class="form-text text-danger"><strong>{{$errors->first('ubicacion')}}</strong></small>
         </div>
 
