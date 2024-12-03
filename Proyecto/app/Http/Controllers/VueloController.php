@@ -7,6 +7,8 @@ use App\Models\escala;
 use Illuminate\Http\Request;
 use App\Http\Requests\agregarVuelo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class VueloController extends Controller
 {
     /**
@@ -123,7 +125,22 @@ class VueloController extends Controller
         $msj2 = $request->input("origen");
         $msj3 = $request->input("destino");
         session()->flash("Exito","Se ha guardado el vuelo ".$msj1." de ".$msj2." hacia ".$msj3);
-        return redirect()->back();
+        
+        $vuelos = DB::table('vuelos')
+            ->join('destinos', 'vuelos.destino_id', '=', 'destinos.id')
+            ->select('vuelos.*', 'destinos.nombre as destino_nombre')
+            ->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);
     }
 
     /**
@@ -137,9 +154,11 @@ class VueloController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(vuelo $vuelo)
+    public function edit(string $id)
     {
-        //
+        $vuelo = DB::table('vuelos')->where('id', $id)->first();
+
+        return view("editVuelo", ["vuelo"=> $vuelo]);
     }
 
     /**
@@ -178,7 +197,22 @@ class VueloController extends Controller
         $msj2 = $request->input("origen");
         $msj3 = $request->input("destino");
         session()->flash("Exito","Se ha guardado el vuelo ".$msj1." de ".$msj2." hacia ".$msj3);
-        return redirect()->back();
+        
+        $vuelos = DB::table('vuelos')
+            ->join('destinos', 'vuelos.destino_id', '=', 'destinos.id')
+            ->select('vuelos.*', 'destinos.nombre as destino_nombre')
+            ->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);;
     }
 
     /**
@@ -193,6 +227,21 @@ class VueloController extends Controller
         $vuelo->escalas()->delete();
         $vuelo->delete();
         session()->flash("Exito","Se ha eliminado el vuelo ".$msj1." de ".$msj2." hacia ".$msj3);
-        return redirect()->back();
+        
+        $vuelos = DB::table('vuelos')
+            ->join('destinos', 'vuelos.destino_id', '=', 'destinos.id')
+            ->select('vuelos.*', 'destinos.nombre as destino_nombre')
+            ->get();
+        $hoteles = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')
+            ->get(); 
+        $destinos = DB::table('destinos')->get();
+    
+        return view('panelAdmin', [
+            'vuelos' => $vuelos,
+            'hoteles' => $hoteles,
+            'destinos' => $destinos,
+        ]);
     }
 }

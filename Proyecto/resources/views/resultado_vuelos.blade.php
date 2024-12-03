@@ -41,12 +41,8 @@
         </tr>
     </thead>
     <tbody>
-        <!-- La tabla se llenará dinámicamente -->
+        
     </tbody>
-
-        <tbody>
-            <!-- Resultados AJAX -->
-        </tbody>
 </table>
 
 <script>
