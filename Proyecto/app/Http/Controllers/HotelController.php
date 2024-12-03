@@ -12,7 +12,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $datos=hotel::all();
+        return view("",$datos);
     }
 
     /**
@@ -20,7 +21,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('registro_hotel');
     }
 
     /**
@@ -57,7 +58,7 @@ class HotelController extends Controller
      */
     public function edit(hotel $hotel)
     {
-        //
+        return view("",$hotel);
     }
 
     /**
