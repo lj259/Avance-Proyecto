@@ -61,16 +61,29 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(validadorRegistroCliente $request, usuario $usuario)
+    public function update(validadorRegistroCliente $request, string $id)
     {
-        //
+        $updateCliente = usuario::find($id);
+        $updateCliente->nombre = $request->input('nombre');
+        $updateCliente->apellido = $request->input('apellido');
+        $updateCliente->correo = $request->input('correo');
+        $updateCliente->telefono = $request->input('telefono');
+        $updateCliente->contraseña = $request->input('contraseña');
+        $updateCliente->save();
+        $msj = $request->input('nombre');
+        session()->flash('Exito','Se actualizo el cliente: '.$msj);
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(usuario $usuario)
+    public function destroy(string $id)
     {
-        //
+        $Cliente = usuario::find($id);
+        $msj = $Cliente->nombre;
+        $Cliente->delete();
+        session()->flash('Exito','Se elimino al cliente: '.$msj);
+        return redirect()->back();
     }
 }

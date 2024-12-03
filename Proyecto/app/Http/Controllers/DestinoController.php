@@ -28,7 +28,12 @@ class DestinoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addDestino = new destino;
+        $addDestino = $request->input('nombre');
+        $addDestino->save();
+        $msj = $request->input('nombre');
+        session()->flash('Exito','Se a guardado el destino'.$msj);
+        return redirect()->back();
     }
 
     /**
@@ -50,16 +55,25 @@ class DestinoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, destino $destino)
+    public function update(Request $request, string $id)
     {
-        //
+        $updateDestino = destino::find($id);
+        $updateDestino = $request->input('nombre');
+        $updateDestino->save();
+        $msj = $request->input('nombre');
+        session()->flash('Exito','Se a actualizado el destino'.$msj);
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(destino $destino)
+    public function destroy(string $id)
     {
-        //
+        $destino = destino::find($id);
+        $msj = $destino->nombre;
+        $destino->delete();
+        session()->flash('Exito','Se a eliminado el destino'.$msj);
+        return redirect()->back();
     }
 }
