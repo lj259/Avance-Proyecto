@@ -90,6 +90,58 @@
       </div>
     </div>
   </div>
+
+  <!-- Galería de Hoteles -->
+  <div class="container text-center my-5">
+    <h3 class="text-primary mb-4">Galería de Hoteles</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      <div class="col">
+        <div class="card shadow h-100">
+          <img src="{{ asset('imagenes/Hotel1.jpg') }}" class="card-img-top rounded" alt="Hotel1">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Hotel 1</h5>
+            <p class="card-text">Un lugar ideal para relajarte y disfrutar del lujo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow h-100">
+          <img src="{{ asset('imagenes/Hotel2.jpg') }}" class="card-img-top rounded" alt="Hotel2">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Hotel 2</h5>
+            <p class="card-text">Perfecto para disfrutar de vistas espectaculares.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow h-100">
+          <img src="{{ asset('imagenes/Hotel3.jpg') }}" class="card-img-top rounded" alt="Hotel3">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Hotel 3</h5>
+            <p class="card-text">Comodidad y estilo en cada rincón.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow h-100">
+          <img src="{{ asset('imagenes/Hotel4.jpg') }}" class="card-img-top rounded" alt="Hotel4">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Hotel 4</h5>
+            <p class="card-text">La mejor opción para unas vacaciones inolvidables.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow h-100">
+          <img src="{{ asset('imagenes/Hotel5.jpg') }}" class="card-img-top rounded" alt="Hotel5">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Hotel 5</h5>
+            <p class="card-text">Lujo y confort en el corazón del destino.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 @endsection
