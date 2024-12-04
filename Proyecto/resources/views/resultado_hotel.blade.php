@@ -55,6 +55,7 @@
         <table id="hotelesTable" class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
+                    <th>Imagen</th>
                     <th>Nombre</th>
                     <th>Categoría</th>
                     <th>Precio por noche</th>
@@ -83,9 +84,14 @@
                     $('#hotelesTable tbody').empty();
 
                     if (response.hoteles && response.hoteles.length > 0) {
-                        response.hoteles.forEach(function(hotel) {
+                        response.hoteles.forEach(function(hotel, index) {
+                            // Generar ruta de imagen basada en el índice
+                            var imageUrl = `/storage/images/Hotel${index + 1}.jpg`;
+
+                            // Crear fila de la tabla
                             var row = `
                                 <tr>
+                                    <td><img src="${imageUrl}" alt="${hotel.nombre}" class="img-thumbnail" style="width: 100px; height: auto;"></td>
                                     <td>${hotel.nombre}</td>
                                     <td>${hotel.calificacion} Estrellas</td>
                                     <td>${hotel.precio}</td>
