@@ -92,10 +92,6 @@ class ControladorVistas extends Controller
         return redirect()->back(); 
         }
         
-    public function Detallehotel()
-    {
-        return view('Detalle_hotel');
-    }
 
     public function busquedavuelos(){
         return view('busqueda_vuelos');

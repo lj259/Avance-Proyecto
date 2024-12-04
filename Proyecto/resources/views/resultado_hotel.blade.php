@@ -23,28 +23,26 @@
                     </select>
                     <small class="form-text text-danger"><strong>{{$errors->first('destino_id')}}</strong></small>
                 </div>
-                <div class="col-md-6">
-                    <label for="nombre" class="form-label">Nombre del Hotel:</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control">
-                </div>
-
+                
                 <div class="col-md-6">
                     <label for="precio" class="form-label">Precio máximo:</label>
-                    <input type="number" id="precio" name="precio" class="form-control">
+                    <input type="text" id="precio" name="precio" class="form-control">
+                    <small class="form-text text-danger"><strong>{{$errors->first('precio')}}</strong></small>
                 </div>
-
+                
                 <div class="col-md-6">
                     <label for="calificacion" class="form-label">Categoría:</label>
                     <select id="calificacion" name="calificacion" class="form-select">
-                        <option value="">Seleccione</option>
+                        <option value="0">Seleccione</option>
                         <option value="1">1 Estrella</option>
                         <option value="2">2 Estrellas</option>
                         <option value="3">3 Estrellas</option>
                         <option value="4">4 Estrellas</option>
                         <option value="5">5 Estrellas</option>
                     </select>
+                    <small class="form-text text-danger"><strong>{{$errors->first('calificacion')}}</strong></small>
                 </div>
-
+                
                 <div class="col-12 text-end">
                     <button type="submit" class="btn btn-primary">Filtrar</button>
                 </div>
@@ -62,6 +60,7 @@
                     <th>Precio por noche</th>
                     <th>Ubicación</th>
                     <th>Disponibilidad</th>
+                    <th>Detalles</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,7 +69,6 @@
         </table>
     </div>
 </div>
-
 <script>
     $(document).ready(function() {
         $('#filtroForm').on('submit', function(event) {
@@ -92,13 +90,16 @@
                                     <td>${hotel.calificacion} Estrellas</td>
                                     <td>${hotel.precio}</td>
                                     <td>${hotel.destino_id}</td>
-                                    <td>${hotel.disponibilidad ? 'Disponible' : 'No disponible'}</td>
+                                    <td>Disponible</td>
+                                    <td>
+                                        <a href="/hotel/${hotel.id}/detalles" class="btn btn-link">Ver detalles</a>
+                                    </td>
                                 </tr>
                             `;
                             $('#hotelesTable tbody').append(row);
                         });
                     } else {
-                        $('#hotelesTable tbody').append('<tr><td colspan="5" class="text-center">No se encontraron hoteles.</td></tr>');
+                        $('#hotelesTable tbody').append('<tr><td colspan="6" class="text-center">No se encontraron hoteles.</td></tr>');
                     }
                 },
                 error: function(xhr, status, error) {
@@ -109,4 +110,6 @@
         });
     });
 </script>
+
+
 @endsection

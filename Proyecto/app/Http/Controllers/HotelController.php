@@ -17,27 +17,21 @@ class HotelController extends Controller
     public function index(Request $request)
 {
     try {
-        $query = DB::table('hoteles');
+        $query = DB::table('hoteles')->get();
 
         if ($request->filled('destino_id')) {
             $query->where('destino_id', $request->destino_id);
         }
-
-        if ($request->filled('nombre')) {
-            $query->where('nombre', 'like', '%' . $request->nombre . '%');
-        }
-
         if ($request->filled('precio')) {
             $query->where('precio', '<=', $request->precio);
         }
 
         if ($request->filled('calificacion')) {
-            $query->where('calificacion', $request->calificacion);
+            $query->where('calificacion','==', $request->calificacion);
         }
+        
 
-        $hoteles = $query->get();
-
-        return response()->json(['hoteles' => $hoteles]);
+        return response()->json(['hoteles' => $query]);
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
@@ -96,9 +90,19 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(hotel $hotel)
+    public function show(string $id)
     {
-       //
+        try {
+            $hotel = DB::table('hoteles')->where('id', $id)->first();
+    
+            if (!$hotel) {
+                return redirect()->route('resultadohotel')->with('error', 'Hotel no encontrado.');
+            }
+    
+            return view('detalleHotel', compact('hotel'));
+        } catch (\Exception $e) {
+            return redirect()->route('resultadohotel')->with('error', 'Hubo un error al cargar los detalles del hotel.');
+        }
     }
 
     /**

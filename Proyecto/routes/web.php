@@ -34,7 +34,8 @@ Route::get('/resultado/vuelo',[ControladorVistas::class,'resultadovuelo'])->name
 Route::post('/BuscaVuelo',[ControladorVistas::class,'BuscaVuelo'])->name('BuscarVuelo');
 Route::get('/resultado/Vuelo',[ControladorVistas::class,'resultadovuelo'])->name('resultadovuelo');
 Route::post('/resultado/filtro',[ControladorVistas::class,'filtroshotel'])->name('filtroshotel');
-Route::get('/Detalle/hotel',[ControladorVistas::class,'Detallehotel'])->name('rutahotel');
+
+Route::get('/Detalle/hotel/{id}',[ControladorVistas::class,'Detallehotel'])->name('rutahotel');
 
 
 Route::get('/carrito/reservacion',[ControladorVistas::class,'carritoreservacion'])->name('rutareservacion');
@@ -50,6 +51,7 @@ Route::post('/admin/Vuelos/agregar',[ControladorVistas::class,'adminVuelosagrega
 Route::get('/admin/Hotel',[ControladorVistas::class,'adminHotel'])->name('adminHotel');
 Route::post('/admin/Hotel/agregar',[ControladorVistas::class,'adminHotelagregar'])->name('adminHotelagregar');
 
+Route::get('/hotel/{id}/detalles', [HotelController::class, 'show'])->name('detalleHotel');
 
 
 
