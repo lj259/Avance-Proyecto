@@ -40,7 +40,7 @@ class UsuarioController extends Controller
         $addCliente->save();
         $msj = $request->input('nombre');
         session()->flash('Exito','Se guardo el cliente: '.$msj);
-        return redirect()->route('login');
+        return to_route('login');
     }
 
     /**

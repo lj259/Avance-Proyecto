@@ -3,7 +3,6 @@
 @section('Titulo', 'Vuelos')
 
 @section('Contenido')
-
 <div class="container p-4 bg-light rounded shadow-sm">
     <form id="filtroForm" method="GET" class="mb-4">
         @csrf
@@ -61,7 +60,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Datos dinámicos llenados por JavaScript -->
+            
         </tbody>
     </table>
 </div>

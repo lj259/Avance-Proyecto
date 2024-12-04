@@ -93,8 +93,11 @@ class HotelController extends Controller
     public function show(string $id)
     {
         try {
-            $hotel = DB::table('hoteles')->where('id', $id)->first();
-    
+            $hotel = DB::table('hoteles')
+            ->join('destinos', 'hoteles.destino_id', '=', 'destinos.id')
+            ->where('hoteles.id', $id)
+            ->select('hoteles.*', 'destinos.nombre as destino_nombre')  // Asegúrate de seleccionar el nombre del destino
+            ->first();
             if (!$hotel) {
                 return redirect()->route('resultadohotel')->with('error', 'Hotel no encontrado.');
             }

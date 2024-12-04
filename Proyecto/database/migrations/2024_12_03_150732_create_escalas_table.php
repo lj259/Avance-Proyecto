@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('escalas', function (Blueprint $table) {
             $table->id();
-            $table->string( 'destino',150);
+            $table->unsignedBigInteger('destino_id');
             $table->time('hora_salida');
             $table->time('hora_llegada');
             $table->unsignedBigInteger('vuelo_id');
             $table->foreign('vuelo_id')->references('id')->on('vuelos')->onDelete('cascade');
+            $table->foreign('destino_id')->references('id')->on('destinos');
             $table->timestamps();
         });
     }

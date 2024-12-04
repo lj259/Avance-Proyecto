@@ -89,7 +89,7 @@ class VueloController extends Controller
      */
     public function create()
     {
-        $destinos = destino::all();
+        $destinos = destino::query()->all();
         return view("registroVuelo",['destinos'=>$destinos]);
     }
 

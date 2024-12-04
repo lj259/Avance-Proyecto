@@ -9,10 +9,10 @@
         <div class="bg-light p-4 rounded shadow text-center mt-4">
             <p>Selecciona el servicio que deseas buscar:</p>
             <div class="d-flex justify-content-center">
-                <a class="btn btn-primary m-2" href="/busqueda/hoteles">
+                <a class="btn btn-primary m-2" href="{{route('resultadohotel')}}">
                     Buscar Hoteles
                 </a>
-                <a class="btn btn-primary m-2" href="/busqueda/vuelos">
+                <a class="btn btn-primary m-2" href="{{route('resultadovuelo')}}">
                     Buscar Vuelos
                 </a>
             </div>

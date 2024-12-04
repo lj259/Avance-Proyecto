@@ -15,7 +15,7 @@ Route::resource('destino',DestinoController::class);
 
 Route::get('/login',[ControladorVistas::class,'login'])->name('login');
 Route::get('/admin/panel',[ControladorVistas::class,'panelAdmin'])->name('panelAdmin');
-Route::post('/iniciar-sesion',[ControladorVistas::class,'loginValidar'])->name('login');
+Route::post('/iniciar-sesion',[ControladorVistas::class,'loginValidar'])->name('incio');
 Route::get('/recuperacion',[ControladorVistas::class,'recuperacion'])->name('rutarecuperacion');
 
 Route::get('/registro/cliente', [ControladorVistas::class, 'registrocliente'])->name('registro/cliente');
