@@ -16,6 +16,9 @@ use App\Http\Requests\validarPaypal;
 use App\Http\Requests\agregarVuelo;
 use App\Http\Requests\agregarHotel;
 
+use App\Models\destino;
+use App\Models\hotel;
+
 class ControladorVistas extends Controller
 {
     public function inicio(){
@@ -80,7 +83,9 @@ class ControladorVistas extends Controller
         return to_route('resultadohotel');    
         }
     public function resultadohotel(){
-        return view('resultado_hotel'); 
+        $destinos = destino::all();
+
+        return view('resultado_hotel',["destinos"=> $destinos]);
         }
     public function filtroshotel(){
         session()->flash('Filtros','Proximamente');
@@ -102,7 +107,6 @@ class ControladorVistas extends Controller
         }
     
     public function resultadovuelo(){
-
         return view('resultado_vuelos');
 
     }

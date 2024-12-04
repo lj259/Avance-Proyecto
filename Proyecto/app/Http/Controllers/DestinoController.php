@@ -60,9 +60,12 @@ class DestinoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(destino $destino)
+    public function edit(string $id)
     {
-        //
+        $destino = destino::find($id);
+        return view("editDestino", [
+            'destino'=>$destino,
+        ]);
     }
 
     /**
@@ -71,7 +74,7 @@ class DestinoController extends Controller
     public function update(Request $request, string $id)
     {
         $updateDestino = destino::find($id);
-        $updateDestino = $request->input('nombre');
+        $updateDestino->nombre = $request->input('nombre');
         $updateDestino->save();
         $msj = $request->input('nombre');
         session()->flash('Exito','Se a actualizado el destino'.$msj);

@@ -17,7 +17,11 @@ class HotelController extends Controller
     public function index(Request $request)
 {
     try {
-        $query = hotel::query();
+        $query = DB::table('hoteles');
+
+        if ($request->filled('destino_id')) {
+            $query->where('destino_id', $request->destino_id);
+        }
 
         if ($request->filled('nombre')) {
             $query->where('nombre', 'like', '%' . $request->nombre . '%');
@@ -27,27 +31,18 @@ class HotelController extends Controller
             $query->where('precio', '<=', $request->precio);
         }
 
-        if ($request->filled('categoria')) {
-            $query->where('categoria', $request->categoria);
+        if ($request->filled('calificacion')) {
+            $query->where('calificacion', $request->calificacion);
         }
 
-        if ($request->filled('ubicacion')) {
-            $query->where('ubicacion', 'like', '%' . $request->ubicacion . '%');
-        }
-
-        if ($request->filled('disponibilidad')) {
-            $query->where('disponibilidad', $request->disponibilidad);
-        }
-
-        // Obtener los hoteles filtrados
         $hoteles = $query->get();
 
         return response()->json(['hoteles' => $hoteles]);
     } catch (\Exception $e) {
-        // Captura cualquier excepción y devuelve el error
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+
 
 
 
@@ -112,8 +107,11 @@ class HotelController extends Controller
     public function edit(string $id)
     {
         $hotel = DB::table('hoteles')->where('id', $id)->first();
-
-        return view("editHotel", ["hotel"=> $hotel]);
+        $destinos = destino::all();
+        return view("editHotel", [
+            "hotel"=> $hotel,
+            'destinos'=>$destinos,
+        ]);
     }
 
     /**
