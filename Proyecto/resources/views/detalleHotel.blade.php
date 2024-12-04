@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="mt-3">
-                <a href="{{ route('hotel.index') }}" class="btn btn-secondary">Volver a la lista de hoteles</a>
+                <a href="{{ route('resultadohotel') }}" class="btn btn-secondary">Volver a la lista de hoteles</a>
             </div>
         </div>
     </div>
